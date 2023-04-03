@@ -39,6 +39,26 @@ class TagsListView(generic.ListView):
     paginate_by = 5
 
 
+class TagsCreateView(generic.CreateView):
+    model = models.Tag
+    fields = "__all__"
+    template_name = 'todo_templates/tag_form.html'
+    success_url = reverse_lazy("todo:tags-list")
+
+
+class TagUpdateView(generic.UpdateView):
+    model = models.Tag
+    fields = "__all__"
+    template_name = 'todo_templates/tag_form.html'
+    success_url = reverse_lazy("todo:tags-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = models.Tag
+    template_name = 'todo_templates/tag_confirm_delete.html'
+    success_url = reverse_lazy("todo:tags-list")
+
+
 def switch_todo_status(request, pk: int):
     task = get_object_or_404(models.Task, pk=pk)
     task.is_done = not task.is_done
