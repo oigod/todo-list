@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Your Tags
+    <a href="{% url 'todo:create-tag' %}" class="btn btn-primary">
+      Add Tag
+    </a>
+  </h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if tags_list %}
+      {% for tag in tags_list %}
+      <tr>
+      <th scope="row">{{ tag.id }}</th>
+      <td>{{ tag.name }}</td>
+      <td><a class="btn btn-primary" href="{% url 'todo:update-tag' pk=tag.id %}">Edit</a></td>
+      <td><a class="btn btn-danger" href="{% url 'todo:delete-tag' pk=tag.id %}">Remove</a></td>
+      </tr>
+      {% endfor %}
+    {% else %}
+      There are no tags
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}
