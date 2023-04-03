@@ -5,5 +5,6 @@ from . import views
 app_name = 'todo'
 
 urlpatterns = [
-    path('', views.TodoList, name='todo-list'),
+    path('', views.ToDoListView.as_view(), name='todo-list'),
+    path('<int:pk>/switch-todo-status/', views.switch_todo_status, name='switch-todo-status'),
 ]
