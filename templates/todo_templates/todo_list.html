@@ -4,7 +4,7 @@
 {% block content %}
   <h1 class="mb-3">
     ToDo Tasks
-    <a href="#" class="btn btn-primary">
+    <a href="{% url 'todo:create-task' %}" class="btn btn-primary">
       New Task
     </a>
   </h1>
@@ -32,10 +32,10 @@
     {% endif %}
     <p>Tags:{% for tag in task.tags.all %} ({{ tag.name }}){% endfor %}
     </p>
-      <a href="#" class="btn btn-primary">
+      <a href="{% url 'todo:update-task' pk=task.id %}" class="btn btn-primary">
         Update
       </a>
-      <a href="#" class="btn btn-danger">
+      <a href="{% url 'todo:delete-task' pk=task.id %}" class="btn btn-danger">
         Delete
       </a>
   <hr>
